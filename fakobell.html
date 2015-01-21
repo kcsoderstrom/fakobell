@@ -1,0 +1,136 @@
+<html>
+<head>
+</head>
+<body>
+  <div class="bg"></div>
+  I'll have a
+  <h2 id="order"></h2>
+
+  <style>
+    body {
+      background: url("bg.jpg") no-repeat center center;
+      font-family: sans-serif;
+      font-size: 30px;
+      color: white;
+      text-align: center;
+      padding: 15% 50px 0 50px;
+      text-shadow: 0 0 20px black, 0 0 20px black, 0 0 20px black, 0 0 20px black, 0 0 20px black, 0 0 20px black;
+    }
+
+    div.bg {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: -1;
+      background: rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      font-size: 60px;
+    }
+  </style>
+
+  <script>
+    var adjectives = [ "cheesy",
+                       "beefy",
+                       "chewy",
+                       "crunchy",
+                       "cool ranch",
+                       "creamy",
+                       "crispy",
+                       "crusty",
+                       "fiery",
+                       "fried",
+                       "glazed",
+                       "hot",
+                       "seared",
+                       "grilled",
+                       "smoky",
+                       "smothered",
+                       "spicy",
+                       "toasted",
+                       "zesty" ];
+
+    var enumerables = [ Math.floor(Math.random() * 8) + 3 + "-layer",
+                        Math.floor(Math.random() * 8) + 3 + "-cheese",
+                        Math.floor(Math.random() * 8) + 3 + "-alarm",
+                        Math.floor(Math.random() * 8) + 3 + "-meat",
+                        Math.floor(Math.random() * 8) + 3 + "-bean" ];
+
+    var prefices = [ "queso",
+                     "pepper",
+                     "fiesta",
+                     "doritos" ];
+
+    var bases = [ "nacho",
+                  "burrito",
+                  "chalupa",
+                  "taco",
+                  "gordita",
+                  "quesadilla",
+                  "crunchwrap",
+                  "tostada",
+                  "salad",
+                  "soft taco" ];
+
+    var onomatopoeias = [ "crunch",
+                          "munch",
+                          "smash",
+                          "sizzle" ];
+
+    var endjectives = [ "grande",
+                        "bueno",
+                        "mucho",
+                        "caliente",
+                        "picante",
+                        "dulce",
+                        "delicioso",
+                        "supreme" ];
+
+    var containers = [ "box",
+                       "tub",
+                       "basket",
+                       "bowl" ];
+
+    var addOns = [ "fresco style",
+                   "with beans instead of meat",
+                   "with extra potatoes",
+                   "with extra beans",
+                   "with potatoes instead of meat",
+                   "with cheese",
+                   "with extra cheese" ];
+
+
+    var h2 = document.getElementById("order");
+
+    var allOfThem = { adj: adjectives,
+                      enum: enumerables,
+                      pref: prefices,
+                      base: bases,
+                      omnom: onomatopoeias,
+                      endj: endjectives,
+                      cont: containers,
+                      addOn: addOns };
+
+    if (Math.random() > 0.9) delete allOfThem.adj;
+    if (Math.random() > 0.4) delete allOfThem.enum;
+    if (Math.random() > 0.3) delete allOfThem.pref;
+    if (Math.random() > 0.3) delete allOfThem.omnom;
+    if (Math.random() > 0.6) delete allOfThem.endj;
+    if (Math.random() > 0.2) delete allOfThem.cont;
+    if (allOfThem.cont || ( Math.random() > 0.3 )) delete allOfThem.addOn;
+
+    var order = "";
+
+    Object.keys(allOfThem).forEach(function(key) {
+      var propArr = allOfThem[key];
+      order += propArr[Math.floor(Math.random() * propArr.length)];
+      order += " ";
+    })
+
+    h2.innerHTML = order;
+  </script>
+</body>
+</html>
